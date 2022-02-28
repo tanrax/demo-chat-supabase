@@ -1,0 +1,4 @@
+# Configuracion de Jetbrains
+.idea/
+# Instalacion de JavaScript
+node_modules/
