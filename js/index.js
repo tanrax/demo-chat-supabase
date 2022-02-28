@@ -34,6 +34,7 @@ createApp({
             cli
                 .from('Mensajes')
                 .on('INSERT', payload => {
+                    // Anyado mensaje nuevo
                     this.mensajes.push(payload.new);
                 })
                 .subscribe()
@@ -42,5 +43,17 @@ createApp({
     mounted() {
         this.cargarMensajes();
         this.escucharNuevosMensajes();
+    },
+    watch: {
+        mensajes: {
+            handler(newValue, oldValue) {
+                // Desciendo el scroll
+                this.$nextTick(() => {
+                    const elemento = this.$refs.mensajesContenedor;
+                    elemento.scrollTo(0, elemento.scrollHeight);
+                })
+            },
+            deep: true
+        }
     }
 }).mount('#app')
